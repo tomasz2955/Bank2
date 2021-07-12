@@ -3,7 +3,7 @@ import java.util.Scanner;
 
 public class Main {
     private static final Scanner scanner = new Scanner(System.in);
-    private static final AccountRepository accountRepository = new AccountRepository("123");
+    private static final AccountRepository accountRepository = new AccountRepository("Bank");
     private static final AccountStatisticsService accountStatisticsService = new AccountStatisticsService(accountRepository);
     private static final AccountService accountService = new AccountService(accountRepository);
     private static final AccountIdentityService accountIdentityService = new AccountIdentityService(accountRepository);
@@ -29,6 +29,7 @@ public class Main {
                 case 5 -> queryAccount();
                 case 6 -> deposit();
                 case 7 -> withdraw();
+                case 8 -> transfer();
                 case 9 -> accountStatisticsService.sumAccount();
                 case 10 -> accountStatisticsService.numberOfAccounts();
                 case 11 -> printActions();
@@ -97,6 +98,23 @@ public class Main {
 
         }
     }
+
+    private static void transfer() {
+        System.out.println("Enter the name of the account from which you want to withdraw money");
+        String name1 = scanner.nextLine();
+        System.out.println("Enter the account name to which you want to transfer money");
+        String name2 = scanner.nextLine();
+        System.out.println("Enter the amount of the transfer");
+        double cash = scanner.nextDouble();
+        Account firstAccount = accountRepository.queryAccount(name1);
+        Account secondAccount = accountRepository.queryAccount(name2);
+        if ((firstAccount == null) || (secondAccount == null)) {
+            System.out.println("Cannot transfer money, account does not exist");
+        } else {
+            accountService.transfer(name1, name2, cash);
+        }
+    }
+
 
     private static void queryAccount() {
         System.out.println("Enter the name of an existing account");

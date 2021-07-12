@@ -2,7 +2,7 @@ package com.company;
 
 public class AccountStatisticsService {
 
-    private AccountRepository repository;
+    private final AccountRepository repository;
 
     public AccountStatisticsService(AccountRepository repository) {
         this.repository = repository;

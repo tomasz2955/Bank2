@@ -5,11 +5,9 @@ import java.util.List;
 
 public class AccountRepository {
 
-    private String myNumber;
     List<Account> bankAccounts;
 
     public AccountRepository(String myNumber) {
-        this.myNumber = myNumber;
         this.bankAccounts = new ArrayList<>();
 
     }
@@ -23,7 +21,6 @@ public class AccountRepository {
             return true;
         }
     }
-
 
 
     public int findAccount(String accountName) {
