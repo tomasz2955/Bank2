@@ -1,5 +1,8 @@
 package com.company;
 
+import java.util.List;
+import java.util.stream.Collectors;
+
 public class AccountIdentityService {
 
     AccountRepository accountRepository;
@@ -8,14 +11,22 @@ public class AccountIdentityService {
         this.accountRepository = repository;
     }
 
-    public boolean updateAccount(Account acc1, Account acc2) {
-        int foundPosition = accountRepository.findAccount(acc1.getName());
-        if(foundPosition<0) {
-            System.out.println(acc1.getName() + " was not found");
+    public boolean updateAccount(Account existing, Account newAcc) {
+        int foundPosition = accountRepository.findAccount(existing.getName());
+        if(foundPosition<0) { //nieeeee
+            System.out.println(existing.getName() + " was not found");
             return false;
         }
-        this.accountRepository.bankAccounts.set(foundPosition, acc2);
-        System.out.println(acc1.getName() + " was replaced with " + acc2.getName());
+
+
+//        List<Account> filteredList = accountRepository.bankAccounts.stream()
+//                .filter(acc -> !acc.getName().equals(existing.getName()))
+//                .collect(Collectors.toList());
+//
+//        filteredList.add(newAcc);
+
+        this.accountRepository.bankAccounts.set(foundPosition, newAcc);
+        System.out.println(existing.getName() + " was replaced with " + newAcc.getName());
         return true;
     }
 

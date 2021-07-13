@@ -19,7 +19,7 @@ public class Account {
         System.out.println("You have deposited " + cash + " PLN. Your account balance is " + this.balance + "PLN.");
     }
 
-    public void withdraw(double cash) {
+    public void withdraw(double cash) { //ujemne wartosci?
         if(this.balance<cash) {
             System.out.println("Not enough money");
         } else {
@@ -40,7 +40,7 @@ public class Account {
         return balance;
     }
 
-    public static Account createAccount(String name, double balance) {
+    public static Account createAccount(String name, double balance) { // https://stackoverflow.com/questions/8148684/what-data-type-to-use-for-money-in-java
         return new Account(name, balance);
     }
 

@@ -1,15 +1,18 @@
 package com.company;
 import java.util.Scanner;
 
+// o streamach lambdach itp https://www.youtube.com/watch?v=gpIUfj3KaOc&list=PLqq-6Pq4lTTa9YGfyhyW2CqdtW9RtY-I3&index=1
+// maven
+// testy
+
 public class Main {
     private static final Scanner scanner = new Scanner(System.in);
-    private static final AccountRepository accountRepository = new AccountRepository("Bank");
+    private static final AccountRepository accountRepository = new AccountRepository("Bank"); //faul
     private static final AccountStatisticsService accountStatisticsService = new AccountStatisticsService(accountRepository);
     private static final AccountService accountService = new AccountService(accountRepository);
     private static final AccountIdentityService accountIdentityService = new AccountIdentityService(accountRepository);
 
     public static void main(String[] args) {
-
         boolean quit = false;
         startBank();
         printActions();
@@ -18,21 +21,54 @@ public class Main {
             int action = scanner.nextInt();
             scanner.nextLine();
             switch (action) {
-                case 0 -> {
+                case 0: {
                     System.out.println("\nYou have been logged out");
                     quit = true;
                 }
-                case 1 -> addNewAccount();
-                case 2 -> updateAccount();
-                case 3 -> removeAccount();
-                case 4 -> accountRepository.printContacts();
-                case 5 -> queryAccount();
-                case 6 -> deposit();
-                case 7 -> withdraw();
-                case 8 -> transfer();
-                case 9 -> accountStatisticsService.sumAccount();
-                case 10 -> accountStatisticsService.numberOfAccounts();
-                case 11 -> printActions();
+                case 1:{
+                    addNewAccount();
+                    break;
+                }
+                case 2:{
+                    updateAccount();
+                    break;
+                }
+                case 3 :{
+                    removeAccount();
+                    break;
+                }
+                case 4 : {
+                    accountRepository.printContacts();
+                    break;
+                }
+                case 5: {
+                    queryAccount();
+                    break;
+                }
+                case 6 : {
+                    deposit();
+                    break;
+                }
+                case 7 : {
+                    withdraw();
+                    break;
+                }
+                case 8 : {
+                    transfer();
+                    break;
+                }
+                case 9 : {
+                    accountStatisticsService.sumAccount();
+                    break;
+                }
+                case 10 : {
+                    accountStatisticsService.numberOfAccounts();
+                    break;
+                }
+                case 11: {
+                    printActions();
+                    break;
+                }
             }
         }
 
@@ -64,7 +100,7 @@ public class Main {
         System.out.println("Enter the opening balance");
         double balance = scanner.nextDouble();
         Account newAccount = Account.createAccount(name, balance);
-        if(accountRepository.addNewAccount(newAccount)) {
+        if(accountRepository.addNewAccount(newAccount)) { //czemu dodawanie konta nie jest w service?
             System.out.println("New account added: name = " + name + "; account number = " + newAccount.getAccountNumber() + "; balance = " + balance + ";");
         } else {
             System.out.println("Cannot add " + name + " already in file");
