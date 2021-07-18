@@ -8,26 +8,29 @@ public class AccountService {
         this.repository = repository;
     }
 
-    public void deposit(String name, double value) {
-        Account account = repository.queryAccount(name);
-        account.deposit(value);
-    }
-
-    public void withdraw(String name, double value) {
-        Account account = repository.queryAccount(name);
-        account.withdraw(value);
-    }
-
-    public void transfer(String name1, String name2, double value) { //sensowniejsze zmienne
-        Account account1 = repository.queryAccount(name1);
-        Account account2 = repository.queryAccount(name2);
-        if (account1.getBalance() < value) { //a jak zrobie transfer minusowej liczby - TESTY
-            System.out.println("You can't transfer money, not enough funds");
-        } else {
-            account1.withdraw(value);
-            account2.deposit(value);
-            System.out.println("Transfer completed");
+    public void deposit(String accountName, double depositValue) {
+        Account account = repository.findAccount(accountName);
+        if(repository.findAccount(accountName) != null) {
+            account.deposit(depositValue);
         }
     }
+
+    public void withdraw(String accountName, double withdrawValue) {
+        Account account = repository.findAccount(accountName);
+        if(repository.findAccount(accountName) != null) {
+            account.withdraw(withdrawValue);
+        }
+    }
+
+    public void transfer(String withdrawAccountName, String depositAccountName, double transferValue) {
+        Account withdrawAccount = repository.findAccount(withdrawAccountName);
+        Account depositAccount = repository.findAccount(depositAccountName);
+        if(repository.findAccount(withdrawAccountName) != null && repository.findAccount(depositAccountName) != null) {
+            withdrawAccount.withdraw(transferValue);
+            depositAccount.deposit(transferValue);
+        }
+    }
+
+
 
 }
