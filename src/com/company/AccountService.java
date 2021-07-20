@@ -10,6 +10,8 @@ public class AccountService {
 
     public void deposit(String accountName, double depositValue) {
         Account account = repository.findAccount(accountName);
+        //jak findAccount bedzie zwracać optionala to zamiast sprawdzać czy coś nie jest nullem mozesz
+        //uzyć takiej metody jak isPresent(). Sprawdzanie nulla jest średnio odbierane
         if(repository.findAccount(accountName) != null) {
             account.deposit(depositValue);
         }
@@ -20,6 +22,7 @@ public class AccountService {
         if(repository.findAccount(accountName) != null) {
             account.withdraw(withdrawValue);
         }
+        // a co w sytuacji gdy nie znajdzie konta? trzeba to obsłużyć żeby tez przetestować to w tescie
     }
 
     public void transfer(String withdrawAccountName, String depositAccountName, double transferValue) {
@@ -29,6 +32,7 @@ public class AccountService {
             withdrawAccount.withdraw(transferValue);
             depositAccount.deposit(transferValue);
         }
+        // a co jak konta jakiegos nie ma? trzeba je osobno obsłużyć zeby w tescie móc sprawdzić którego konta brakowało
     }
 
 

@@ -25,6 +25,8 @@ public class AccountStatisticsService {
         for(Account account : repository.bankAccounts) {
             System.out.println(account);
         }
+        //prościej streamem
+//        repository.bankAccounts.forEach(System.out::println);
     }
 
 }
