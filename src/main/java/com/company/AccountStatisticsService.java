@@ -22,11 +22,7 @@ public class AccountStatisticsService {
     }
 
     public void listOfAccounts() {
-        for(Account account : repository.bankAccounts) {
-            System.out.println(account);
-        }
-        //prościej streamem
-//        repository.bankAccounts.forEach(System.out::println);
+        repository.bankAccounts.forEach(System.out::println);
     }
 
 }

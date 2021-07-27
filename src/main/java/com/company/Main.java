@@ -17,22 +17,12 @@ public class Main {
     public static void main(String[] args) {
 
         accountRepository.addNewAccount(new Account("Tomek", 200));
-        accountRepository.addNewAccount(new Account("Anna", 2000));
-        accountRepository.addNewAccount(new Account("Bartek", 450));
-        accountRepository.addNewAccount(new Account("Kamil", 50));
-        accountRepository.addNewAccount(new Account("Paulina", 400));
-
-        accountRepository.removeExistingAccount("Anna");
-        accountRepository.findAccount("Paulina");
-
-        accountService.deposit("Tomek", 200);
-        accountService.withdraw("Anna", 500);
-        accountService.transfer("Tomek", "Paulina", 50);
-
-        accountStatisticsService.numberOfAccounts();
-        accountStatisticsService.sumAccountMoney();
+        accountRepository.addNewAccount(new Account("Kamil", 207));
         accountStatisticsService.listOfAccounts();
-        accountIdentityService.updateExistingAccount("Kamil", new Account("Ola", 50));
+        accountIdentityService.updateExistingAccount("Kamil", new Account("Patryk", 700));
+
+
         accountStatisticsService.listOfAccounts();
+
     }
 }
