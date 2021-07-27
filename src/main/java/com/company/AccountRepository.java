@@ -6,8 +6,7 @@ import java.util.Optional;
 import java.util.stream.Collectors;
 
 public class AccountRepository {
-    List<Account> bankAccounts = new ArrayList<>();
-
+    private List<Account> bankAccounts = new ArrayList<>();
 
     public void addNewAccount(Account account) {
         try {
@@ -18,16 +17,32 @@ public class AccountRepository {
         }
     }
 
+    //boolean
     public void removeExistingAccount(String removeAccountName) {
-        try {
             findAccount(removeAccountName);
             this.bankAccounts = bankAccounts.stream().filter(acc->!acc.getAccountName().equals(removeAccountName)).collect(Collectors.toList());
-        } catch (RuntimeException exception) {
-            System.out.println("Account not found");
-        }
     }
 
     public Account findAccount(String accountName) {
-        return bankAccounts.stream().filter(acc -> acc.getAccountName().equals(accountName)).findAny().orElseThrow(() -> new RuntimeException("Account not found"));
+        return bankAccounts.stream()
+                .filter(acc -> acc.getAccountName().equals(accountName))
+                .findAny()
+                .orElseThrow(() -> new RuntimeException("Account" + accountName + "not found"));
+    }
+//
+//    public boolean accountExists(String accountName) {
+//        return bankAccounts.stream()
+//                .filter(acc -> acc.getAccountName().equals(accountName))
+//                .findAny()
+//                .orElseThrow(() -> new RuntimeException("Account not found"));
+//    }
+
+
+    public List<Account> getBankAccounts() {
+        return bankAccounts;
+    }
+
+    public void setBankAccounts(List<Account> bankAccounts) {
+        this.bankAccounts = bankAccounts;
     }
 }

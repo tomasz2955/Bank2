@@ -28,8 +28,8 @@ public class AccountService {
 
     public void transfer(String withdrawAccountName, String depositAccountName, double transferValue) {
         try {
-        Account withdrawAccount = repository.findAccount(withdrawAccountName);
-        Account depositAccount = repository.findAccount(depositAccountName);
+            Account withdrawAccount = repository.findAccount(withdrawAccountName);
+            Account depositAccount = repository.findAccount(depositAccountName);
             withdrawAccount.withdraw(transferValue);
             depositAccount.deposit(transferValue);
         } catch (RuntimeException exception) {

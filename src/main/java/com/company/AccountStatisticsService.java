@@ -9,12 +9,12 @@ public class AccountStatisticsService {
         this.repository = repository;
     }
 
-    public void sumAccountMoney() {
+    public double sumAccountMoney() {
         double totalSum = 0;
-        for (Account account : repository.bankAccounts) {
+        for (Account account : repository.getBankAccounts()) {
             totalSum += account.getAccountBalance();
         }
-        System.out.println(totalSum);
+        return totalSum;
     }
 
     public long numberOfAccounts() {

@@ -3,7 +3,7 @@ package com.company;
 import java.util.Random;
 
 public class Account {
-    Random random = new Random();
+    private Random random = new Random();
     private final String accountName;
     private final int accountNumber;
     private double accountBalance;
@@ -11,7 +11,7 @@ public class Account {
     public Account(String accountName, double accountBalance) {
         this.accountName = accountName;
         this.accountBalance = accountBalance;
-        this.accountNumber = random.nextInt(88000000)+10000000;
+        this.accountNumber = random.nextInt(88000000) + 10000000;
     }
 
     public String getAccountName() {
@@ -29,7 +29,7 @@ public class Account {
     }
 
     public void withdraw(double withdrawValue) {
-        if(this.accountBalance>=withdrawValue && withdrawValue > 0) {
+        if (this.accountBalance >= withdrawValue && withdrawValue > 0) {
             this.accountBalance -= withdrawValue;
         }
     }
